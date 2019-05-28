@@ -95,7 +95,7 @@ namespace ParticleSwarmOptimization
         /// </summary>
         /// <param name="count">Maximum number of steps.</param>
         /// <param name="stepFunc">Step function. Takes current iteration counter and returns true when the stepping should be aborted.</param>
-        public void Step(int count, Func<int, bool> stepFunc)
+        public void Step(int count = 1, Func<int, bool> stepFunc = null)
         {
             for (int l = 0; l < count; l++)
             {
@@ -105,7 +105,7 @@ namespace ParticleSwarmOptimization
                     MoveParticle(particles[i]);
                 });
 
-                if (stepFunc(l))
+                if (stepFunc != null && stepFunc(l))
                     break;
             }
         }
